@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Web Agency</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+    :root {
+        --bg-color: #f4f4f4;
+        --text-color: #000;
+        --header-bg: linear-gradient(90deg, #4b6cb7, #182848);
+    }
+    body.dark {
+        --bg-color: #121212;
+        --text-color: #f4f4f4;
+        --header-bg: linear-gradient(90deg, #000, #333);
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: var(--bg-color);
+        color: var(--text-color);
+        transition: 0.3s;
+    }
+    header {
+        background: var(--header-bg);
+        color: white;
+        padding: 10px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .logo {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    nav {
+        display: flex;
+        gap: 15px;
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    nav a:hover, nav a.active {
+        color: yellow;
+    }
+    .theme-toggle {
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 50%;
+        padding: 5px 8px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+    /* Mobile Menu */
+    .menu-toggle {
+        display: none;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
+    @media (max-width: 768px) {
+        nav {
+            display: none;
+            flex-direction: column;
+            background: var(--header-bg);
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 200px;
+            padding: 10px;
+        }
+        nav.show {
+            display: flex;
+        }
+        .menu-toggle {
+            display: block;
+        }
+    }
+    section {
+        display: none;
+        padding: 20px;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+    section.active {
+        display: block;
+    }
+    /* Hero Slider */
+    .hero {
+        position: relative;
+        height: 400px;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        margin-bottom: 20px;
+    }
+    .slides {
+        display: flex;
+        width: 300%;
+        animation: slide 12s infinite;
+    }
+    .slides img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        33% { transform: translateX(-100%); }
+        66% { transform: translateX(-200%); }
+        100% { transform: translateX(0); }
+    }
+    footer {
+        background: var(--header-bg);
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin-top: 20px;
+    }
+    form input, form textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: var(--bg-color);
+        color: var(--text-color);
+    }
+    form input[type="submit"] {
+        background: #4b6cb7;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    form input[type="submit"]:hover {
+        background: yellow;
+        color: black;
+    }
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    ul li {
+        padding: 8px 0;
+        border-bottom: 1px solid #ccc;
+    }
+    ul li i {
+        color: #4b6cb7;
+        margin-right: 8px;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+    /* Scroll animation */
+    .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-in-out;
+    }
+    .fade-up.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Royal Web Agency</div>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <nav>
+        <a onclick="showPage('home')" class="active">Home</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('services')">Services</a>
+        <a onclick="showPage('portfolio')">Portfolio</a>
+        <a onclick="showPage('blog')">Blog</a>
+        <a onclick="showPage('contact')">Contact</a>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+</header>
+
+<!-- Home -->
+<section id="home" class="active">
+    <div class="hero fade-up">
+        <div class="slides">
+            <img src="https://picsum.photos/id/1015/1200/400" alt="Slide 1">
+            <img src="https://picsum.photos/id/1025/1200/400" alt="Slide 2">
+            <img src="https://picsum.photos/id/1035/1200/400" alt="Slide 3">
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about">
+    <h2 class="fade-up"><i class="fas fa-users"></i> About Our Company</h2>
+    <p class="fade-up">We are a team of passionate developers and designers building modern, responsive websites for clients across the globe.</p>
+</section>
+
+<!-- Services -->
+<section id="services">
+    <h2 class="fade-up"><i class="fas fa-cogs"></i> Our Services</h2>
+    <ul>
+        <li class="fade-up"><i class="fas fa-paint-brush"></i> Website Design</li>
+        <li class="fade-up"><i class="fas fa-code"></i> Web Application Development</li>
+        <li class="fade-up"><i class="fas fa-shopping-cart"></i> E-commerce Solutions</li>
+        <li class="fade-up"><i class="fas fa-search"></i> SEO Optimization</li>
+    </ul>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio">
+    <h2 class="fade-up"><i class="fas fa-briefcase"></i> Our Portfolio</h2>
+    <ul>
+        <li class="fade-up"><i class="fas fa-building"></i> Corporate Website - ABC Corp</li>
+        <li class="fade-up"><i class="fas fa-store"></i> E-commerce Store - ShopEasy</li>
+        <li class="fade-up"><i class="fas fa-id-card"></i> Portfolio Site - John Doe</li>
+    </ul>
+</section>
+
+<!-- Blog -->
+<section id="blog">
+    <h2 class="fade-up"><i class="fas fa-blog"></i> Latest Blog Posts</h2>
+    <ul>
+        <li class="fade-up"><i class="fas fa-check"></i> How to Build a Modern Website</li>
+        <li class="fade-up"><i class="fas fa-check"></i> Top 10 Web Design Trends in 2025</li>
+        <li class="fade-up"><i class="fas fa-check"></i> Why SEO is Important for Businesses</li>
+    </ul>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <h2 class="fade-up"><i class="fas fa-envelope"></i> Contact Us</h2>
+    <form class="fade-up">
+        <label>Name:</label><br>
+        <input type="text" name="name" placeholder="Enter your name"><br><br>
+        <label>Email:</label><br>
+        <input type="email" name="email" placeholder="Enter your email"><br><br>
+        <label>Message:</label><br>
+        <textarea name="message" placeholder="Write your message"></textarea><br><br>
+        <input type="submit" value="Send Message">
+    </form>
+</section>
+
+<footer>
+    <p>&copy; 2025 Royal Web Agency</p>
+</footer>
+
+<script>
+function showPage(pageId) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    event.target.classList.add('active');
+    toggleMenu(false);
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const icon = document.querySelector('.theme-toggle i');
+    if (document.body.classList.contains('dark')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+}
+
+function toggleMenu(forceClose = null) {
+    const nav = document.querySelector('nav');
+    if (forceClose === false) {
+        nav.classList.remove('show');
+        return;
+    }
+    nav.classList.toggle('show');
+}
+
+/* Scroll animation */
+window.addEventListener('scroll', () => {
+    document.querySelectorAll('.fade-up').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+            el.classList.add('show');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
